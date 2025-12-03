@@ -10,12 +10,22 @@
     
     /* Header Styles */
     .header { background-color: #051039; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
-    .header img { height: 50px; filter: brightness(0) invert(1); } /* Logo blanc forcé */
+    .header img { height: 50px; filter: brightness(0) invert(1); }
     .header-title { color: #ffffff; font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
     
     /* Main Layout */
     .main-content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
-    .options-card { background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 500px; width: 100%; overflow: hidden; }
+    
+    /* MODIFICATION ICI : Ajout de la barre rouge (border-top) */
+    .options-card { 
+        background-color: #ffffff; 
+        border-radius: 8px; 
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+        max-width: 500px; 
+        width: 100%; 
+        overflow: hidden; 
+        border-top: 6px solid #FF0000; /* LA BARRE ROUGE */
+    }
     
     /* Card Styles */
     .card-header { background-color: #051039; padding: 25px 30px; text-align: center; }
@@ -30,37 +40,32 @@
     .option-item:hover { background-color: #F0F4F8; border-color: #051039; }
     .option-item input { width: 18px; height: 18px; margin-right: 12px; accent-color: #051039; }
     .option-item label { font-size: 14px; color: #1A1A1A; cursor: pointer; flex: 1; }
-    .option-desc { font-size: 12px; color: #666666; margin-top: 3px; }
     
     .divider { height: 1px; background-color: #E5E5E5; margin: 25px 0; }
     
-    /* Unsubscribe Section */
-    .unsubscribe-section { background-color: #FEF3F2; border: 1px solid #FECDCA; border-radius: 6px; padding: 20px; text-align: center; }
-    .unsubscribe-section h3 { color: #B42318; font-size: 14px; font-weight: 700; margin-bottom: 10px; }
-    .unsubscribe-section p { color: #666666; font-size: 13px; margin-bottom: 15px; line-height: 1.5; }
-    
     /* Buttons */
     .btn { display: inline-block; padding: 12px 30px; font-size: 14px; font-weight: 600; border-radius: 4px; text-decoration: none; cursor: pointer; transition: all 0.2s ease; border: none; }
-    .btn-primary { background-color: #051039; color: #ffffff; }
+    .btn-primary { background-color: #051039; color: #ffffff; width: 100%; text-align: center; }
     .btn-primary:hover { background-color: #0a1d5c; }
-    .btn-danger { background-color: #B42318; color: #ffffff; }
-    .btn-danger:hover { background-color: #912018; }
-    .button-group { display: flex; gap: 15px; justify-content: center; margin-top: 25px; }
+    
+    /* Unsubscribe Link */
+    .unsubscribe-link { display: block; text-align: center; margin-top: 15px; font-size: 11px; color: #999999; text-decoration: underline; cursor: pointer; }
+    .unsubscribe-link:hover { color: #B42318; }
+    
+    .button-group { margin-top: 25px; }
     
     /* Footer */
     .footer { background-color: #051039; padding: 20px 40px; text-align: center; }
     .footer p { color: rgba(255,255,255,0.6); font-size: 11px; }
     
     /* Messages */
-    .success-message { display: none; background-color: #F0FDF4; border: 1px solid #039855; border-radius: 6px; padding: 20px; text-align: center; margin-top: 20px; }
+    .success-message { display: none; background-color: #F0FDF4; border: 1px solid #039855; border-radius: 6px; padding: 20px; text-align: center; margin-bottom: 20px; }
     .success-message.show { display: block; }
     .success-message h3 { color: #027A48; font-size: 16px; margin-bottom: 8px; }
     
     @media (max-width: 600px) { 
       .header { padding: 15px 20px; flex-direction: column; gap: 10px; } 
       .card-body { padding: 20px; } 
-      .button-group { flex-direction: column; } 
-      .btn { width: 100%; text-align: center; } 
     }
   </style>
 </head>
@@ -79,41 +84,40 @@
       
       <div class="card-body">
         
+        <div class="success-message" id="success-msg">
+          <h3>✓ Preferences Saved</h3>
+          <p>Your settings have been updated.</p>
+        </div>
+
         <div class="option-group">
           <div class="option-title">Region of Interest</div>
           
           <div class="option-item">
             <input type="checkbox" id="region-northam" name="region" value="northam" checked>
-            <div>
-              <label for="region-northam">Region North America</label>
-              <div class="option-desc">USA, Canada, Mexico focus (Default)</div>
-            </div>
+            <div><label for="region-northam">Region North America</label></div>
           </div>
 
           <div class="option-item">
             <input type="checkbox" id="region-europe" name="region" value="europe">
-            <div>
-              <label for="region-europe">Region Europe</label>
-              <div class="option-desc">Northern Europe & Mediterranean</div>
-            </div>
+            <div><label for="region-europe">Region Europe</label></div>
+          </div>
+
+          <div class="option-item">
+            <input type="checkbox" id="region-apac" name="region" value="apac">
+            <div><label for="region-apac">Region Asia Pacific (APAC)</label></div>
           </div>
 
           <div class="option-item">
             <input type="checkbox" id="region-me" name="region" value="middle_east">
-            <div>
-              <label for="region-me">Region Middle East</label>
-              <div class="option-desc">UAE, Saudi Arabia, Gulf focus</div>
-            </div>
+            <div><label for="region-me">Region Middle East</label></div>
           </div>
 
           <div class="option-item">
             <input type="checkbox" id="region-latam" name="region" value="latam">
-            <div>
-              <label for="region-latam">Region Latin America</label>
-              <div class="option-desc">South & Central America, Caribbean</div>
-            </div>
+            <div><label for="region-latam">Region Latin America</label></div>
           </div>
         </div>
+
         <div class="divider"></div>
 
         <div class="option-group">
@@ -121,35 +125,23 @@
           <div class="option-item">
             <input type="radio" id="freq-weekly" name="frequency" value="weekly" checked>
             <div>
-              <label for="freq-weekly">Weekly</label>
-              <div class="option-desc">Every Monday at 8:00 AM</div>
+              <label for="freq-weekly">Weekly (Monday 8:00 AM)</label>
             </div>
           </div>
           <div class="option-item">
             <input type="radio" id="freq-monthly" name="frequency" value="monthly">
             <div>
               <label for="freq-monthly">Monthly Digest</label>
-              <div class="option-desc">First Monday of the month</div>
             </div>
           </div>
         </div>
         
-        <div class="divider"></div>
-        
-        <div class="unsubscribe-section">
-          <h3>Unsubscribe</h3>
-          <p>Stop receiving all strategic intelligence updates.</p>
-          <a href="#" id="unsubscribe-btn" class="btn btn-danger">Unsubscribe</a>
-        </div>
-        
-        <div class="success-message" id="success-msg">
-          <h3>✓ Preferences Saved</h3>
-          <p>Your regional and frequency settings have been updated.</p>
-        </div>
-        
         <div class="button-group">
           <button class="btn btn-primary" onclick="savePreferences()">Save Preferences</button>
+          
+          <a id="unsubscribe-btn" class="unsubscribe-link">Unsubscribe from all lists</a>
         </div>
+
       </div>
     </div>
   </main>
@@ -160,35 +152,26 @@
 
   <script>
     // CONFIGURATION URL
-    // Remplacez par votre URL de webhook n8n réelle
     const baseUrl = 'https://srv1133928.hstgr.cloud'; 
-    const optionsWebhookPath = '/webhook/newsletter-options-save'; // Nouveau endpoint pour sauvegarder les options
-    const unsubscribeWebhookPath = '/webhook/newsletter-unsubscribe';
 
     function savePreferences() {
-        // Simulation d'envoi des données (à connecter à n8n plus tard si besoin)
-        // Ici on affiche juste le message de succès pour l'UX
         document.getElementById('success-msg').classList.add('show');
-        
-        // Optionnel : Envoyer les données cochées à n8n via fetch()
-        /*
-        const regions = [];
-        document.querySelectorAll('input[name="region"]:checked').forEach(el => regions.push(el.value));
-        const frequency = document.querySelector('input[name="frequency"]:checked').value;
-        
-        fetch(baseUrl + optionsWebhookPath, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ regions, frequency })
-        });
-        */
+        window.scrollTo(0, 0); // Remonte pour voir le message de succès
     }
 
+    // LOGIQUE "DECOCHE TOUT"
     document.getElementById('unsubscribe-btn').onclick = function(e) {
       e.preventDefault();
-      if(confirm('Are you sure you want to unsubscribe from all lists?')) {
-        window.location.href = baseUrl + unsubscribeWebhookPath;
-      }
+      
+      // Décoche toutes les cases "Region"
+      const checkboxes = document.querySelectorAll('input[name="region"]');
+      checkboxes.forEach(cb => {
+        cb.checked = false;
+        // Effet visuel : grise le parent pour montrer que c'est désactivé
+        cb.closest('.option-item').style.opacity = '0.5';
+      });
+
+      alert("All regions have been unchecked. Please click 'Save Preferences' to confirm your unsubscription.");
     };
   </script>
 </body>
