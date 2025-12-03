@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Newsletter Options - CMA CGM North America</title>
+  <title>Newsletter Options - CMA CGM Strategic Watch</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, Helvetica, sans-serif; background-color: #E8E8E8; min-height: 100vh; display: flex; flex-direction: column; }
@@ -67,56 +67,69 @@
 <body>
   <header class="header">
     <img src="https://raw.githubusercontent.com/iaegio/newscma/e965f238297f1ad24ca77fc221ea48a490f9ccce/CMA%20CGM_idGDHHFMrC_1.png" alt="CMA CGM">
-    <span class="header-title">North America Strategic Watch</span>
+    <span class="header-title">Strategic Watch Preferences</span>
   </header>
   
   <main class="main-content">
     <div class="options-card">
       <div class="card-header">
         <h1>Newsletter Options</h1>
-        <p>Manage your subscription preferences</p>
+        <p>Customize your strategic intelligence feed</p>
       </div>
       
       <div class="card-body">
+        
+        <div class="option-group">
+          <div class="option-title">Region of Interest</div>
+          
+          <div class="option-item">
+            <input type="checkbox" id="region-northam" name="region" value="northam" checked>
+            <div>
+              <label for="region-northam">Region North America</label>
+              <div class="option-desc">USA, Canada, Mexico focus (Default)</div>
+            </div>
+          </div>
+
+          <div class="option-item">
+            <input type="checkbox" id="region-europe" name="region" value="europe">
+            <div>
+              <label for="region-europe">Region Europe</label>
+              <div class="option-desc">Northern Europe & Mediterranean</div>
+            </div>
+          </div>
+
+          <div class="option-item">
+            <input type="checkbox" id="region-me" name="region" value="middle_east">
+            <div>
+              <label for="region-me">Region Middle East</label>
+              <div class="option-desc">UAE, Saudi Arabia, Gulf focus</div>
+            </div>
+          </div>
+
+          <div class="option-item">
+            <input type="checkbox" id="region-latam" name="region" value="latam">
+            <div>
+              <label for="region-latam">Region Latin America</label>
+              <div class="option-desc">South & Central America, Caribbean</div>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+
         <div class="option-group">
           <div class="option-title">Delivery Frequency</div>
           <div class="option-item">
             <input type="radio" id="freq-weekly" name="frequency" value="weekly" checked>
             <div>
               <label for="freq-weekly">Weekly</label>
-              <div class="option-desc">Receive the newsletter every Monday</div>
-            </div>
-          </div>
-          <div class="option-item">
-            <input type="radio" id="freq-biweekly" name="frequency" value="biweekly">
-            <div>
-              <label for="freq-biweekly">Bi-weekly</label>
-              <div class="option-desc">Receive the newsletter every two weeks</div>
+              <div class="option-desc">Every Monday at 8:00 AM</div>
             </div>
           </div>
           <div class="option-item">
             <input type="radio" id="freq-monthly" name="frequency" value="monthly">
             <div>
-              <label for="freq-monthly">Monthly</label>
-              <div class="option-desc">Receive a monthly digest</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="option-group">
-          <div class="option-title">Content Preferences</div>
-          <div class="option-item">
-            <input type="checkbox" id="content-audio" checked>
-            <div>
-              <label for="content-audio">Include Audio Briefing</label>
-              <div class="option-desc">Podcast version of the newsletter</div>
-            </div>
-          </div>
-          <div class="option-item">
-            <input type="checkbox" id="content-full" checked>
-            <div>
-              <label for="content-full">Full Article Feed</label>
-              <div class="option-desc">All strategic intelligence articles</div>
+              <label for="freq-monthly">Monthly Digest</label>
+              <div class="option-desc">First Monday of the month</div>
             </div>
           </div>
         </div>
@@ -125,38 +138,55 @@
         
         <div class="unsubscribe-section">
           <h3>Unsubscribe</h3>
-          <p>You will no longer receive the North America Strategic Watch newsletter.</p>
-          <a href="#" id="unsubscribe-btn" class="btn btn-danger">Unsubscribe from Newsletter</a>
+          <p>Stop receiving all strategic intelligence updates.</p>
+          <a href="#" id="unsubscribe-btn" class="btn btn-danger">Unsubscribe</a>
         </div>
         
         <div class="success-message" id="success-msg">
           <h3>✓ Preferences Saved</h3>
-          <p>Your preferences have been updated.</p>
+          <p>Your regional and frequency settings have been updated.</p>
         </div>
         
         <div class="button-group">
-          <button class="btn btn-primary" onclick="document.getElementById('success-msg').classList.add('show');">Save Preferences</button>
+          <button class="btn btn-primary" onclick="savePreferences()">Save Preferences</button>
         </div>
       </div>
     </div>
   </main>
   
   <footer class="footer">
-    <p>CMA CGM Group - Leading Worldwide Shipping Group<br>Strategic Intelligence Unit - North America</p>
+    <p>CMA CGM Group - Leading Worldwide Shipping Group<br>Strategic Intelligence Unit</p>
   </footer>
 
   <script>
     // CONFIGURATION URL
-    // Remplacez 'https://YOUR-N8N-DOMAIN' par l'URL de votre webhook n8n
-    // Exemple : 'https://webhook.mon-vps.com'
-    const baseUrl = 'https://YOUR-N8N-DOMAIN';
+    // Remplacez par votre URL de webhook n8n réelle
+    const baseUrl = 'https://srv1133928.hstgr.cloud'; 
+    const optionsWebhookPath = '/webhook/newsletter-options-save'; // Nouveau endpoint pour sauvegarder les options
     const unsubscribeWebhookPath = '/webhook/newsletter-unsubscribe';
 
-    // Logique du bouton Unsubscribe
+    function savePreferences() {
+        // Simulation d'envoi des données (à connecter à n8n plus tard si besoin)
+        // Ici on affiche juste le message de succès pour l'UX
+        document.getElementById('success-msg').classList.add('show');
+        
+        // Optionnel : Envoyer les données cochées à n8n via fetch()
+        /*
+        const regions = [];
+        document.querySelectorAll('input[name="region"]:checked').forEach(el => regions.push(el.value));
+        const frequency = document.querySelector('input[name="frequency"]:checked').value;
+        
+        fetch(baseUrl + optionsWebhookPath, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ regions, frequency })
+        });
+        */
+    }
+
     document.getElementById('unsubscribe-btn').onclick = function(e) {
       e.preventDefault();
-      if(confirm('Are you sure you want to unsubscribe?')) {
-        // Redirection vers le webhook n8n
+      if(confirm('Are you sure you want to unsubscribe from all lists?')) {
         window.location.href = baseUrl + unsubscribeWebhookPath;
       }
     };
