@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter Options - CMA CGM North America</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; background-color: #E8E8E8; min-height: 100vh; display: flex; flex-direction: column; }
+    
+    /* Header Styles */
+    .header { background-color: #051039; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
+    .header img { height: 50px; filter: brightness(0) invert(1); } /* Logo blanc forcé */
+    .header-title { color: #ffffff; font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+    
+    /* Main Layout */
+    .main-content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+    .options-card { background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 500px; width: 100%; overflow: hidden; }
+    
+    /* Card Styles */
+    .card-header { background-color: #051039; padding: 25px 30px; text-align: center; }
+    .card-header h1 { color: #ffffff; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .card-header p { color: rgba(255,255,255,0.7); font-size: 14px; }
+    .card-body { padding: 30px; }
+    
+    /* Form Elements */
+    .option-group { margin-bottom: 25px; }
+    .option-title { font-size: 14px; font-weight: 700; color: #051039; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .option-item { display: flex; align-items: center; padding: 12px 15px; background-color: #F9FAFB; border-radius: 6px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s ease; border: 2px solid transparent; }
+    .option-item:hover { background-color: #F0F4F8; border-color: #051039; }
+    .option-item input { width: 18px; height: 18px; margin-right: 12px; accent-color: #051039; }
+    .option-item label { font-size: 14px; color: #1A1A1A; cursor: pointer; flex: 1; }
+    .option-desc { font-size: 12px; color: #666666; margin-top: 3px; }
+    
+    .divider { height: 1px; background-color: #E5E5E5; margin: 25px 0; }
+    
+    /* Unsubscribe Section */
+    .unsubscribe-section { background-color: #FEF3F2; border: 1px solid #FECDCA; border-radius: 6px; padding: 20px; text-align: center; }
+    .unsubscribe-section h3 { color: #B42318; font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+    .unsubscribe-section p { color: #666666; font-size: 13px; margin-bottom: 15px; line-height: 1.5; }
+    
+    /* Buttons */
+    .btn { display: inline-block; padding: 12px 30px; font-size: 14px; font-weight: 600; border-radius: 4px; text-decoration: none; cursor: pointer; transition: all 0.2s ease; border: none; }
+    .btn-primary { background-color: #051039; color: #ffffff; }
+    .btn-primary:hover { background-color: #0a1d5c; }
+    .btn-danger { background-color: #B42318; color: #ffffff; }
+    .btn-danger:hover { background-color: #912018; }
+    .button-group { display: flex; gap: 15px; justify-content: center; margin-top: 25px; }
+    
+    /* Footer */
+    .footer { background-color: #051039; padding: 20px 40px; text-align: center; }
+    .footer p { color: rgba(255,255,255,0.6); font-size: 11px; }
+    
+    /* Messages */
+    .success-message { display: none; background-color: #F0FDF4; border: 1px solid #039855; border-radius: 6px; padding: 20px; text-align: center; margin-top: 20px; }
+    .success-message.show { display: block; }
+    .success-message h3 { color: #027A48; font-size: 16px; margin-bottom: 8px; }
+    
+    @media (max-width: 600px) { 
+      .header { padding: 15px 20px; flex-direction: column; gap: 10px; } 
+      .card-body { padding: 20px; } 
+      .button-group { flex-direction: column; } 
+      .btn { width: 100%; text-align: center; } 
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <img src="https://raw.githubusercontent.com/iaegio/newscma/e965f238297f1ad24ca77fc221ea48a490f9ccce/CMA%20CGM_idGDHHFMrC_1.png" alt="CMA CGM">
+    <span class="header-title">North America Strategic Watch</span>
+  </header>
+  
+  <main class="main-content">
+    <div class="options-card">
+      <div class="card-header">
+        <h1>Newsletter Options</h1>
+        <p>Manage your subscription preferences</p>
+      </div>
+      
+      <div class="card-body">
+        <div class="option-group">
+          <div class="option-title">Delivery Frequency</div>
+          <div class="option-item">
+            <input type="radio" id="freq-weekly" name="frequency" value="weekly" checked>
+            <div>
+              <label for="freq-weekly">Weekly</label>
+              <div class="option-desc">Receive the newsletter every Monday</div>
+            </div>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="freq-biweekly" name="frequency" value="biweekly">
+            <div>
+              <label for="freq-biweekly">Bi-weekly</label>
+              <div class="option-desc">Receive the newsletter every two weeks</div>
+            </div>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="freq-monthly" name="frequency" value="monthly">
+            <div>
+              <label for="freq-monthly">Monthly</label>
+              <div class="option-desc">Receive a monthly digest</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="option-group">
+          <div class="option-title">Content Preferences</div>
+          <div class="option-item">
+            <input type="checkbox" id="content-audio" checked>
+            <div>
+              <label for="content-audio">Include Audio Briefing</label>
+              <div class="option-desc">Podcast version of the newsletter</div>
+            </div>
+          </div>
+          <div class="option-item">
+            <input type="checkbox" id="content-full" checked>
+            <div>
+              <label for="content-full">Full Article Feed</label>
+              <div class="option-desc">All strategic intelligence articles</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="unsubscribe-section">
+          <h3>Unsubscribe</h3>
+          <p>You will no longer receive the North America Strategic Watch newsletter.</p>
+          <a href="#" id="unsubscribe-btn" class="btn btn-danger">Unsubscribe from Newsletter</a>
+        </div>
+        
+        <div class="success-message" id="success-msg">
+          <h3>✓ Preferences Saved</h3>
+          <p>Your preferences have been updated.</p>
+        </div>
+        
+        <div class="button-group">
+          <button class="btn btn-primary" onclick="document.getElementById('success-msg').classList.add('show');">Save Preferences</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <p>CMA CGM Group - Leading Worldwide Shipping Group<br>Strategic Intelligence Unit - North America</p>
+  </footer>
+
+  <script>
+    // CONFIGURATION URL
+    // Remplacez 'https://YOUR-N8N-DOMAIN' par l'URL de votre webhook n8n
+    // Exemple : 'https://webhook.mon-vps.com'
+    const baseUrl = 'https://YOUR-N8N-DOMAIN';
+    const unsubscribeWebhookPath = '/webhook/newsletter-unsubscribe';
+
+    // Logique du bouton Unsubscribe
+    document.getElementById('unsubscribe-btn').onclick = function(e) {
+      e.preventDefault();
+      if(confirm('Are you sure you want to unsubscribe?')) {
+        // Redirection vers le webhook n8n
+        window.location.href = baseUrl + unsubscribeWebhookPath;
+      }
+    };
+  </script>
+</body>
+</html>
